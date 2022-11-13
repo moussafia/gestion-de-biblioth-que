@@ -44,8 +44,8 @@
               </li>
             </ul>
             <form class="d-flex" role="search">
-              <button class="btn btn-outline-success text-white border-white m-1" type="submit"><a href="signUp.html">S'inscrire</a></button>
-              <button class="btn btn-outline-success text-white border-white m-1" type="submit"><a href="signIn.html">Se connecter</a></button>
+              <button class="btn btn-outline-success text-white border-white m-1" type="submit"><a href="signUp.php">S'inscrire</a></button>
+              <button class="btn btn-outline-success text-white border-white m-1" type="submit"><a href="signIn.php">Se connecter</a></button>
             </form>
           </div>
         </div>

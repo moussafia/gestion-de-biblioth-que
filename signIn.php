@@ -45,7 +45,7 @@
                                         <button type="submit" class="btn btn-primary btn-lg fw-bolder">Entrer</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <a href="signUp.html" style="text-decoration:none;">S'inscrire</a>
+                                        <a href="signUp.php" style="text-decoration:none;">S'inscrire</a>
                                     </div>
                                 </form>
                             </div>

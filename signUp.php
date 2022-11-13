@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="assets\css\style.css">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <!-- JavaScript script.js -->
+    <script src="assets\js\script.js"></script>
     <title>sign Up</title>
 </head>
 <body class="vh-100" style="background-color: #242A3F;">
@@ -24,13 +26,13 @@
                                 <div>
                                     <p class="text-center h1 fw-bold mb-5 mx-md-4 mt-4">S'inscrire</p>
                                 </div>
-                                <form action="" class="ps-4">
+                                <form name="SignUPform" action="script.php" method="POST" class="ps-4" onSubmit="return signUP_valid();">
                                     <div class="d-flex">
                                         <div class="align-items-center mb-4 pe-2">
                                             <i class="bi bi-person-fill fs-3"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" placeholder="Nom & Prenom" class="form-control">
+                                            <input type="text" placeholder="Nom & Prenom" class="form-control" id="username" name="username">
                                         </div>
                                     </div>
                                     <div class="d-flex mb-4">
@@ -39,7 +41,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <label >date de naissance</label>
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" id="datenaissance" name="datenaissance">
                                         </div>
                                     </div>
                                     <div class="d-flex">
@@ -47,7 +49,7 @@
                                             <i class="bi bi-envelope-fill fs-3"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" placeholder="Votre Email" class="form-control">
+                                            <input type="email" placeholder="Votre Email" class="form-control" id="uemail" name="uemail">
                                         </div>
                                     </div>
                                     <div class="d-flex mb-4">
@@ -58,10 +60,10 @@
                                             <label for="Sexe">Sexe :</label>
                                         </div>
                                         <div class="pe-2 ps-3">
-                                            <input type="radio"> Homme
+                                            <input type="radio" name="msexe" value="Homme"> Homme
                                         </div>
                                         <div class="pe-2 ps-2">
-                                            <input type="radio"> Femme
+                                            <input type="radio" name="fsexe" value="Femme"> Femme
                                         </div>
                                     </div>    
                                     <div class="d-flex">
@@ -69,14 +71,14 @@
                                             <i class="bi bi-key-fill fs-2"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" placeholder="Mot de passe" class="form-control">
+                                            <input type="password" placeholder="Mot de passe" class="form-control" id="password" name="password">
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-1 mb-lg-1">
                                         <button type="submit" class="btn btn-primary btn-lg fw-bolder">Enregistrer</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <a href="signIn.html" style="text-decoration:none;">Se connecter</a>
+                                        <a href="signIn.php" style="text-decoration:none;">Se connecter</a>
                                     </div>
                                 </form>
                             </div>
