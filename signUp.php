@@ -26,7 +26,7 @@
                                 <div>
                                     <p class="text-center h1 fw-bold mb-5 mx-md-4 mt-4">S'inscrire</p>
                                 </div>
-                                <form name="SignUPform" action="script.php" method="POST" class="ps-4" onSubmit="return signUP_valid();">
+                                <form name="SignUPform" action="script.php" method="POST" class="ps-4" onSubmit="signUP_valid();">
                                     <div class="d-flex">
                                         <div class="align-items-center mb-4 pe-2">
                                             <i class="bi bi-person-fill fs-3"></i>
@@ -41,7 +41,7 @@
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
                                             <label >date de naissance</label>
-                                            <input type="date" class="form-control" id="datenaissance" name="datenaissance">
+                                            <input type="date" min="1950-01-01" max="2014-01-01" class="form-control" id="datenaissance" name="datenaissance">
                                         </div>
                                     </div>
                                     <div class="d-flex">
@@ -60,10 +60,10 @@
                                             <label for="Sexe">Sexe :</label>
                                         </div>
                                         <div class="pe-2 ps-3">
-                                            <input type="radio" name="msexe" value="Homme"> Homme
+                                            <input class="form-check-input" type="radio" name="sexe" value="1" checked> Homme
                                         </div>
                                         <div class="pe-2 ps-2">
-                                            <input type="radio" name="fsexe" value="Femme"> Femme
+                                            <input class="form-check-input" type="radio" name="sexe" value="2"> Femme
                                         </div>
                                     </div>    
                                     <div class="d-flex">
@@ -75,12 +75,12 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-1 mb-lg-1">
-                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder">Enregistrer</button>
+                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder" name="Enregistrer">Enregistrer</button>
                                     </div>
+                                </form>    
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <a href="signIn.php" style="text-decoration:none;">Se connecter</a>
                                     </div>
-                                </form>
                             </div>
                             <div class="col-md-11 col-lg-6 col-xl-6 d-flex align-items-center order-1 order-lg-2">
                                 <img src="./assets/img/cover/bib.jpg" class="w-100 h-100" style="border-radius:25px ;">
