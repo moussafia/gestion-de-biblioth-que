@@ -1,3 +1,6 @@
+<?php
+include('script.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,7 @@
     <link rel="stylesheet" href="assets\css\style.css">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <!-- JavaScript script.js -->
+    <!-- JavaScript script.js pour validation -->
     <script src="assets\js\script.js"></script>
     <title>sign Up</title>
 </head>
@@ -26,7 +29,7 @@
                                 <div>
                                     <p class="text-center h1 fw-bold mb-5 mx-md-4 mt-4">S'inscrire</p>
                                 </div>
-                                <form name="SignUPform" action="script.php" method="POST" class="ps-4" onSubmit="signUP_valid();">
+                                <form name="inscription" method="POST" class="ps-4" id="inscription" onsubmit="return signUP_valid();">
                                     <div class="d-flex">
                                         <div class="align-items-center mb-4 pe-2">
                                             <i class="bi bi-person-fill fs-3"></i>
@@ -75,7 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-1 mb-lg-1">
-                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder" name="Enregistrer">Enregistrer</button>
+                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder" id="Enregistrer" name="Enregistrer">Enregistrer</button>
                                     </div>
                                 </form>    
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
