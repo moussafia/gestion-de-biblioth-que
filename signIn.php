@@ -1,3 +1,6 @@
+<?php
+include('script.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,13 +27,13 @@
                                 <div>
                                     <p class="text-center h1 fw-bold mb-5 mx-md-4 mt-4">Se connecter</p>
                                 </div>
-                                <form action="" class="ps-4">
+                                <form method="POST" action="" class="ps-4">
                                     <div class="d-flex">
                                         <div class="align-items-center mb-4 pe-2">
                                             <i class="bi bi-envelope-fill fs-3"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" placeholder="Votre Email" class="form-control">
+                                            <input type="email" placeholder="Votre Email" class="form-control" name="Sinuemail">
                                         </div>
                                     </div>  
                                     <div class="d-flex">
@@ -38,16 +41,16 @@
                                             <i class="bi bi-key-fill fs-2"></i>
                                         </div>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" placeholder="Mot de passe" class="form-control">
+                                            <input type="password" placeholder="Mot de passe" class="form-control" name="inpassword">
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-1 mb-lg-1">
-                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder">Entrer</button>
-                                    </div>
-                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <a href="signUp.php" style="text-decoration:none;">S'inscrire</a>
+                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder" name="Entrer">Entrer</button>
                                     </div>
                                 </form>
+                                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                    <a href="signUp.php" style="text-decoration:none;">S'inscrire</a>
+                                </div>
                             </div>
                             <div class="col-md-11 col-lg-6 col-xl-6 d-flex align-items-center order-1 order-lg-2">
                                 <img src="./assets/img/cover/bib.jpg" class="w-100 h-100" style="border-radius:25px ;">
