@@ -1,3 +1,8 @@
+var save=document.getElementById('save');
+var update=document.getElementById('Update');
+var delet=document.getElementById('delete');
+// const form=document.forms['crudForm'];
+
 function signUP_valid(){
     var unom=document.inscription.username;
     var umail=document.inscription.uemail;
@@ -47,4 +52,26 @@ function userPassewordValid(pass){
         return false;
     }
     return true;
+}
+
+function clickBtnAddBook(){
+    save.style.display='inline';
+    delet.style.display='none';
+    update.style.display='none';
+    document.getElementById('nameOperation').innerHTML='Ajouter un livre';
+    document.crudForm.reset();
+}
+
+function RemplirForm(idForm){
+    save.style.display="none";
+    delet.style.display="inline";
+    update.style.display="inline";
+    document.getElementById('nameOperation').innerHTML="mise a jour ou suprimer les livre";
+    document.crudForm.picture.files.value=document.getElementById(idForm).getAttribute("pictureForm");
+    document.crudForm.auteur.value=document.getElementById(idForm).getAttribute("AuteurForm");
+    document.crudForm.genre.value=document.getElementById(idForm).getAttribute("GenreForm");
+    document.crudForm.prix.value=document.getElementById(idForm).getAttribute("priceForm");
+    document.crudForm.Description.value=document.getElementById(idForm).getAttribute("DescriptionForm");
+    document.crudForm.title.value=document.getElementById(idForm).getAttribute("titleForm");
+    document.crudForm.idBook.value=idForm;
 }

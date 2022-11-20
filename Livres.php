@@ -1,5 +1,8 @@
 <?php
 include('script.php');
+if(!isset($_SESSION['name'])){
+  header('location: index.php');
+}else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,13 +29,13 @@ include('script.php');
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
           <ul class="navbar-nav  me-auto mb-4 mb-lg-0 ms-md-3 gap-5">
             <li class="nav-item">
-              <a class="nav-link" href="#">livres  <i class="bi bi-book"></i></a>
+              <a class="nav-link" href="MLIVRES.php">Mes livres  <i class="bi bi-book"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Statistique  <i class="bi bi-graph-up"></i></a>
+              <a class="nav-link" href="statistique.php">Statistique  <i class="bi bi-graph-up"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Sortir  <i class="bi bi-box-arrow-right"></i></a>
+              <a class="nav-link active" aria-current="page" href="sortir.php">Sortir  <i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
           <div class="float-right">
@@ -199,3 +202,4 @@ include('script.php');
 </form>
 </body>
   </html>
+<?php } ?>

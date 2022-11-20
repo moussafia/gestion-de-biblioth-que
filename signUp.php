@@ -12,10 +12,6 @@ include('script.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- css style -->
     <link rel="stylesheet" href="assets\css\style.css">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <!-- JavaScript script.js pour validation -->
-    <script src="assets\js\script.js"></script>
     <title>sign Up</title>
 </head>
 <body class="vh-100" style="background-color: #242A3F;">
@@ -80,10 +76,17 @@ include('script.php');
                                     <div class="d-flex justify-content-center mx-4 mb-1 mb-lg-1">
                                         <button type="submit" class="btn btn-primary btn-lg fw-bolder" id="Enregistrer" name="Enregistrer">Enregistrer</button>
                                     </div>
-                                </form>    
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <a href="signIn.php" style="text-decoration:none;">Se connecter</a>
                                     </div>
+                                </form>    
+                                <?php if(isset($_SESSION['message'])){?>
+                                <div class="alert alert-danger" role="alert">
+                                <?php   
+                                echo $_SESSION['message'];
+                                unset($_SESSION['message']);?>
+                                </div>
+                                <?php }?>
                             </div>
                             <div class="col-md-11 col-lg-6 col-xl-6 d-flex align-items-center order-1 order-lg-2">
                                 <img src="./assets/img/cover/bib.jpg" class="w-100 h-100" style="border-radius:25px ;">
@@ -93,7 +96,9 @@ include('script.php');
                 </div>
             </div>
         </div>
-   
-                
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <!-- JavaScript script.js pour validation -->
+  <script src="assets\js\script.js"></script>              
 </body>
 </html>

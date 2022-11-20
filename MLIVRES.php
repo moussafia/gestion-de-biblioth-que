@@ -1,5 +1,8 @@
 <?php
 include('script.php');
+if(!isset($_SESSION['name'])){
+    header('location: index.php');
+  }else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +15,7 @@ include('script.php');
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <!-- css style -->
         <link rel="stylesheet" href="assets\css\style.css">
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-        <title>livre</title>
+        <title>Mes livre</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg text-center" style="background-color:#242A3F;">
@@ -32,7 +33,7 @@ include('script.php');
                     <a class="nav-link" href="statistique.php">Statistique  <i class="bi bi-graph-up"></i></a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Sortir  <i class="bi bi-box-arrow-right"></i></a>
+                    <a class="nav-link active" aria-current="page" href="sortir.php">Sortir  <i class="bi bi-box-arrow-right"></i></a>
                     </li>
                 </ul>
                 <div class="float-right">
@@ -48,29 +49,18 @@ include('script.php');
                     <p class="text-danger" style="font-size:40px;"><strong>Mes livres</strong></p>
                 </div>
                 <div class="col-lg-6 mt-2 d-flex justify-content-lg-end">
-                    <form method="" class="d-inline">
+                    <form method="POST" class="d-inline">
                         <button class="btn text-white bg-danger" id="deleteALL" type="submit"  name="deleteAll">
-                            Delete All
+                            Suprimer tous
                         </button>
-                        <button class="btn text-white bg-success" id="addBtn" type="button" data-bs-toggle="modal" data-bs-target="#CRUD">
-                            + Add Task
+                        <button class="btn text-white bg-success" id="addBtn" type="button" onclick="clickBtnAddBook()" data-bs-toggle="modal" data-bs-target="#crudForm" >
+                            + Ajouter un livre
                         </button>
                     </form>
                 </div>
             </div>
                 <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <button type ="button"  class="btn btn btn-outline-secondary shadow border-0 m-2" data-bs-toggle="modal" data-bs-target="#CRUD">
-                        <div class="d-flex justify-content-around flex-wrap gap-3 overflow-hidden my-3">
-                            <img src="test.png" style="object-fit: scale-down; height: 333px;" class="img-thumbnail">
-                        </div>
-                        <div><strong class="text-black"> Lorem ipsum dolor sit amet ...</strong></div>
-                        <div><u style="color:#1907e4;">Auteur:</u>    <span class="text-black">auteur name</span></div>
-                        <div><u style="color:#1907e4;">Genre:</u>   <span class="text-black">genre name</span></div>
-                        <div><u style="color:#1907e4;">#Ajouter par:</u>   <i class="text-black">admin</i></div>
-                        <div><u style="color:#1907e4;"> Description:</u>    <i class="text-black">Lorem ipsum dolor sit amet consectetur...</i></div>
-                        <div><span class="text-black text-center fs-4" style="border:#1907e4 solid 2px ;border-radius: 5px;">$300</span></div>
-                    </button>
+                    <?php displayMyBook(); ?>
                 </div>
             </div>
             </div>
@@ -109,7 +99,6 @@ include('script.php');
         </p>
         </section>
         <!-- Section: Text -->
-
         <!-- Section: Links -->
         <section class="">
         <!--Grid row-->
@@ -130,8 +119,6 @@ include('script.php');
                 </li>
             </ul>
             </div>
-            <!--Grid column-->
-
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4">
             <h5 class="text-uppercase">Entreprise</h5>
@@ -189,45 +176,53 @@ include('script.php');
         <a class="text-white" href="http://localhost/gestion-de-biblioth-que/">gestion-de-bibliothèque.com</a>
         </div>
         </footer> 
-        <form action="">
-            <div class="modal fade" id="CRUD" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <form name="crudForm" method="POST" enctype="multipart/form-data">
+            <div class="modal fade" id="crudForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="staticBackdropLabel">ADD-book</h1>
+                      <h1 class="modal-title fs-5" id="nameOperation"></h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" id="idBook" name="idBook">
                         <label for="picture">Picture</label><br>
-                        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg"><br><br>
+                        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg,, image/jpg"><br><br>
                         <label for="title">Titre</label><br>
-                        <input class="form-control" type="text" name="title" aria-label="default input example" id="title"><br>
-                        <label for="title">Auteur</label><br>
-		                <input class="form-control" type="text" name="title" aria-label="default input example" id="title"><br>
+                        <input class="form-control" type="text" name="title" aria-label="default input example" id="title" required><br>
+                        <label for="auteur">Auteur</label><br>
+		                <input class="form-control" type="text" name="auteur" aria-label="default input example" id="auteur" required><br>
                         <div>
-                            <label for="priority" name="status">Genre</label><br>
-                            <select class="form-select" aria-label="Default select example" name="Status" id="Status">
-                              <option value="1">Scientifique</option>
-                              <option value="2">Latirature</option>
+                            <label for="priority" name="genre">Genre</label><br>
+                            <select class="form-select" aria-label="Default select example" name="genre" id="genre">
+                              <option value="1">littéraires</option>
+                              <option value="2">Scientifique</option>
                               <option value="3">Autre</option>
                             </select><br>
                         </div>
-                        <label for="title">Prix</label><br>
-                        <input class="form-control" type="text" name="title" aria-label="default input example" id="title"><br>
+                        <label for="prix">Prix</label><br>
+                        <input class="form-control" type="number" name="prix" aria-label="default input example" id="prix" required><br>
                         <div class="mb-3">
                             <label for="Description" class="col-form-label">Description:</label>
-                            <textarea class="form-control" name="Description" id="Description"></textarea>
+                            <textarea class="form-control" name="Description" id="Description" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="save" name="save">Save</button>
-                        <button type="submit" class="btn btn-success"  id="Update" name="Update">Update</button>
-                        <button type="submit" class="btn btn-danger" id="delete" name="delete">delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                        <button type="submit" class="btn btn-primary" id="save" name="save">Enregistrer</button>
+                        <button type="submit" class="btn btn-success"  id="Update" name="Update">Mise a jour</button>
+                        <button type="submit" class="btn btn-danger" id="delete" name="delete">Suprimer</button>
                       </div>
                   </div>
                 </div>
               </div>
         </form>
+        <!-- ================== BEGIN core-js ================== -->
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> 
+        <!-- script.js here -->
+        <script src="assets\js\script.js"></script>
+        <!-- ================== END core-js ================== -->
     </body>
 </html>
+<?php } ?>

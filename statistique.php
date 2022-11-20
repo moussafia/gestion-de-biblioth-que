@@ -1,3 +1,9 @@
+<?php
+include('script.php');
+if(!isset($_SESSION['name'])){
+  header('location: index.php');
+}else{
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,22 +33,22 @@
                           Menu
                         </a>
                         <ul class="dropdown-menu bg-black">
-                          <li><a class="dropdown-item" href="#">livres</a></li>
-                          <li><a class="dropdown-item" href="#">Mes livres</a></li>
+                          <li><a class="dropdown-item" href="Livres.php">livres</a></li>
+                          <li><a class="dropdown-item" href="MLIVRES.php">Mes livres</a></li>
                           <li><hr class="dropdown-divider"></li>
                         </ul>
                       </li>
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Sortir  <i class="bi bi-box-arrow-right"></i></a>
+                    <a class="nav-link active" aria-current="page" href="sortir.php">Sortir  <i class="bi bi-box-arrow-right"></i></a>
                     </li>
                 </ul>
                 <div class="float-right">
-                    <button class="btn text-white border-white"><i class="bi bi-person-circle text-white">  <strong>Moussafia mohammed</strong></i></button>
+                    <button class="btn text-white border-white"><i class="bi bi-person-circle text-white">  <strong><?php echo $_SESSION['name']; ?></strong></i></button>
                 </div>
             </div>
             </div>
         </nav>
-        <main>
+        <main class="min-vh-100">
             <div class="container-fluid">
             <div class="row">
                 <div class="mb-1"><p class="text-center text-danger shadow bg-white rounded m-2" style="font-size:40px;"><strong>Statistique</strong></p>
@@ -192,3 +198,4 @@
         </footer> 
     </body>
 </html>
+<?php } ?>

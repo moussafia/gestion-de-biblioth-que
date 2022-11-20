@@ -1,5 +1,8 @@
 <?php
 include('script.php');
+if(!isset($_SESSION['name'])){
+  header('location: index.php');
+}else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,16 +33,16 @@ include('script.php');
                 Menu
               </a>
               <ul class="dropdown-menu bg-black">
-                <li><a class="dropdown-item" href="#">livres</a></li>
+                <li><a class="dropdown-item" href="Livres.php">livres</a></li>
                 <li><a class="dropdown-item" href="MLIVRES.php">Mes livres</a></li>
                 <li><hr class="dropdown-divider"></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Statistique  <i class="bi bi-graph-up"></i></a>
+              <a class="nav-link" href="statistique.php">Statistique  <i class="bi bi-graph-up"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Sortir  <i class="bi bi-box-arrow-right"></i></a>
+              <a class="nav-link active" aria-current="page" href="sortir.php">Sortir  <i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
           <div class="float-right">
@@ -177,3 +180,4 @@ include('script.php');
 </footer> 
 </body>
   </html>
+<?php } ?>
