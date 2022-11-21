@@ -67,7 +67,6 @@ function RemplirForm(idForm){
     delet.style.display="inline";
     update.style.display="inline";
     document.getElementById('nameOperation').innerHTML="mise a jour ou suprimer les livre";
-    document.crudForm.picture.files.value=document.getElementById(idForm).getAttribute("pictureForm");
     document.crudForm.auteur.value=document.getElementById(idForm).getAttribute("AuteurForm");
     document.crudForm.genre.value=document.getElementById(idForm).getAttribute("GenreForm");
     document.crudForm.prix.value=document.getElementById(idForm).getAttribute("priceForm");

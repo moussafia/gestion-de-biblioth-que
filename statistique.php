@@ -15,8 +15,6 @@ if(!isset($_SESSION['name'])){
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <!-- css style -->
         <link rel="stylesheet" href="assets\css\style.css">
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
         <title>livre</title>
     </head>
     <body>
@@ -58,26 +56,32 @@ if(!isset($_SESSION['name'])){
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="text-center text-success shadow bg-white rounded m-2"><strong>nombre des livres total</strong>
                     </div>
-                    <div class="text-center text black shadow bg-white rounded m-2"><strong>76</strong>
+                    <div class="text-center text black shadow bg-white rounded m-2"><strong><?php nombrLivresTotal(); ?></strong>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="text-center text-success shadow bg-white rounded m-2"><strong>nombre des admines inscré</strong>
                     </div>
-                    <div class="text-center text black shadow bg-white rounded m-2"><strong>76</strong>
+                    <div class="text-center text black shadow bg-white rounded m-2"><strong><?php nombrAdminInscr(); ?></strong>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="text-center text-success shadow bg-white rounded m-2"><strong>nombre des livres selon genre</strong>
                     </div>
                     <div class="text-center text black shadow bg-white rounded m-2">
-                        <strong>Scientifique: 83</strong><br>
+                        <strong>Scientifique: <?php genre(2) ?></strong><br>
                     </div>
                     <div class="text-center text black shadow bg-white rounded m-2">
-                        <strong>Literature: 83</strong><br>
+                        <strong>Literature: <?php genre(1) ?></strong><br>
                     </div>
                     <div class="text-center text black shadow bg-white rounded m-2">
-                        <strong>Autre: 83</strong><br>
+                        <strong>Autre: <?php genre(3) ?></strong><br>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="text-center text-success shadow bg-white rounded m-2"><strong>nombre mes livres total</strong>
+                    </div>
+                    <div class="text-center text black shadow bg-white rounded m-2"><strong><?php nombrMesLivres() ?></strong>
                     </div>
                 </div>
             </div>
@@ -197,5 +201,11 @@ if(!isset($_SESSION['name'])){
         </div>
         </footer> 
     </body>
+     <!-- ================== BEGIN core-js ================== -->
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> 
+        <!-- script.js here -->
+        <script src="assets\js\script.js"></script>
+        <!-- ================== END core-js ================== -->
 </html>
 <?php } ?>

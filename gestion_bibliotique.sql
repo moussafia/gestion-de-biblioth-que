@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 17 nov. 2022 à 21:53
+-- Généré le : lun. 21 nov. 2022 à 15:30
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.1.10
 
@@ -49,24 +49,25 @@ INSERT INTO `admin` (`id`, `nom_complet`, `date_naissance`, `email`, `sexe`, `pa
 (30, 'symuziton', '1958-10-17', 'kyjab@mailinator.com', 1, 'Pa$$w0rd!'),
 (31, 'kuqema', '1972-11-05', 'rigecumu@mailinator.com', 1, 'Pa$$w0rd!'),
 (32, 'ciguher', '1997-07-19', 'bejeriso@mailinator.com', 1, 'Pa$$w0rd!'),
-(33, 'qenoku', '2011-09-22', 'ryrigepu@mailinator.com', 2, 'Pa$$w0rd!');
+(33, 'qenoku', '2011-09-22', 'ryrigepu@mailinator.com', 2, 'Pa$$w0rd!'),
+(34, 'mohammed moussafia', '1999-11-11', 'moussafia@gmail.com', 1, '123');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `genre`
+-- Structure de la table `genre_livre`
 --
 
-CREATE TABLE `genre` (
+CREATE TABLE `genre_livre` (
   `id` int(11) NOT NULL,
-  `genre` varchar(11) NOT NULL
+  `nom_genre` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `genre`
+-- Déchargement des données de la table `genre_livre`
 --
 
-INSERT INTO `genre` (`id`, `genre`) VALUES
+INSERT INTO `genre_livre` (`id`, `nom_genre`) VALUES
 (1, 'littéraires'),
 (2, 'scientifiqu'),
 (3, 'autre');
@@ -78,7 +79,7 @@ INSERT INTO `genre` (`id`, `genre`) VALUES
 --
 
 CREATE TABLE `livre` (
-  `id` int(11) NOT NULL,
+  `idLivre` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `n_auteur` varchar(255) NOT NULL,
   `genre` int(11) NOT NULL,
@@ -87,6 +88,16 @@ CREATE TABLE `livre` (
   `price` int(11) NOT NULL,
   `photo_book` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `livre`
+--
+
+INSERT INTO `livre` (`idLivre`, `title`, `n_auteur`, `genre`, `description`, `code`, `price`, `photo_book`) VALUES
+(27, 'Quis explicabo Et m', 'Sunt totam eum maxim', 3, 'Tenetur deleniti cum', 34, 35, 'IMG-637b823604f259.35645862.jpg'),
+(28, 'Aliquip facilis omni', 'Amet officia labori', 3, 'Laboris eaque dolore', 34, 85, 'IMG-637b82c2d6c2f7.36964975.png'),
+(29, 'Minima quo odio offi', 'Dicta consequatur b', 2, 'Unde commodi nostrud', 34, 98, 'avatarPNG.jpg'),
+(30, 'Quidem sed necessita', 'Quo nostrum sit in c', 1, 'Sit ut quos et ut l', 34, 89, 'avatarPNG.jpg');
 
 -- --------------------------------------------------------
 
@@ -121,16 +132,16 @@ ALTER TABLE `admin`
   ADD KEY `sexe` (`sexe`);
 
 --
--- Index pour la table `genre`
+-- Index pour la table `genre_livre`
 --
-ALTER TABLE `genre`
+ALTER TABLE `genre_livre`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `livre`
 --
 ALTER TABLE `livre`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`idLivre`),
   ADD KEY `code` (`code`),
   ADD KEY `genre` (`genre`);
 
@@ -149,19 +160,19 @@ ALTER TABLE `sexe`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT pour la table `genre`
+-- AUTO_INCREMENT pour la table `genre_livre`
 --
-ALTER TABLE `genre`
+ALTER TABLE `genre_livre`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `livre`
 --
 ALTER TABLE `livre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idLivre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `sexe`
@@ -184,7 +195,7 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `livre`
   ADD CONSTRAINT `livre_ibfk_1` FOREIGN KEY (`code`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `livre_ibfk_2` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `livre_ibfk_2` FOREIGN KEY (`genre`) REFERENCES `genre_livre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,5 +1,8 @@
 <?php
 include('script.php');
+if(isset($_SESSION['name'])){
+  header('location: dashboard.php');
+}else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +15,6 @@ include('script.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- css style -->
     <link rel="stylesheet" href="assets\css\style.css">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <title>sign In</title>
 </head>
 <body class="vh-100" style="background-color: #242A3F;">
@@ -67,7 +68,12 @@ include('script.php');
                 </div>
             </div>
         </div>
-   
-                
+    <!-- ================== BEGIN core-js ================== -->
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> 
+        <!-- script.js here -->
+        <script src="assets\js\script.js"></script>
+        <!-- ================== END core-js ================== -->            
 </body>
 </html>
+<?php } ?>

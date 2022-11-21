@@ -90,14 +90,16 @@ function saveBook(){
         $new_img_name=uniqid("IMG-",true).'.'.$img_ext;
         $img_new_path='IMGupload/'.$new_img_name;
         move_uploaded_file($tmp_photo,$img_new_path);
+        $new_img_name=$photo ? $new_img_name : 'avatarPNG.jpg';
         GLOBAL $conn;
         $req="INSERT INTO `livre` (`title`, `n_auteur`, `genre`,
          `description`, `code`, `price`, `photo_book`) 
          VALUES ('$title', '$auteu', '$genr', '$description',$idus, '$prix', '$new_img_name')";
         mysqli_query($conn, $req);
         header('location: MLIVRES.php');
+        }
     }
-}
+
 function displayMyBook(){
     GLOBAL $conn;
     $idus=$_SESSION['iduser'];
@@ -109,7 +111,30 @@ function displayMyBook(){
         AuteurForm="<?=$row['n_auteur'] ?>"     GenreForm="<?=$row['genre'] ?>"      DescriptionForm="<?=$row['description'] ?>"     pictureForm="<?=$row['photo_book'] ?>"
         priceForm="<?=$row['price'] ?>"        data-bs-toggle="modal" data-bs-target="#crudForm">
                             <div class="d-flex justify-content-around flex-wrap gap-3 overflow-hidden my-3">
-                                <img src="IMGupload\<?=$row['photo_book']?>" style="object-fit: scale-down; height: 333px;" class="img-thumbnail vw-100 ">
+                                <img src="IMGupload\<?=$row['photo_book']?>" style="object-fit: scale-down; height: 333px;" class="img-thumbnail vw-100">
+                            </div>
+                            <div><strong class="text-black"> <?php echo displayCutString($row['title']);?></strong></div>
+                            <div><u style="color:#1907e4;"><strong>Auteur:</strong></u>    <span class="text-black"><?php echo displayCutString($row['n_auteur']); ?></span></div>
+                            <div><u style="color:#1907e4;"><strong>Genre:</strong></u>   <span class="text-black"><?php echo displayCutString($row['nom_genre']); ?></span></div>
+                            <div><u style="color:#1907e4;"><strong>#Ajouter par:</strong></u>   <i class="text-black"><?php echo displayCutString($row['nom_complet']); ?></i></div>
+                            <div><u style="color:#1907e4;"> <strong>Description:</strong></u>    <i class="text-black"><?php echo displayCutString($row['description']); ?></i></div>
+                            <div><span class="text-black text-center fs-4" style="border:#1907e4 solid 2px ;border-radius: 5px;"><?php echo $row['price']; ?>$</span></div>
+        </button>
+    </div>
+<?php }
+}
+function displayAllBook(){
+    GLOBAL $conn;
+    $idus=$_SESSION['iduser'];
+    $req="SELECT * FROM livre JOIN genre_livre ON livre.genre=genre_livre.id JOIN admin ON livre.code=admin.id";
+    $result=mysqli_query($conn, $req);
+    while($row=mysqli_fetch_assoc($result)){?>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <button type ="button"  id="<?=$row['idLivre']?>" onclick="RemplirForm(id)" class="btn btn btn-outline-secondary shadow border-0 m-2"       titleForm="<?=$row['title'] ?>"     
+        AuteurForm="<?=$row['n_auteur'] ?>"     GenreForm="<?=$row['genre'] ?>"      DescriptionForm="<?=$row['description'] ?>"     pictureForm="<?=$row['photo_book'] ?>"
+        priceForm="<?=$row['price'] ?>"        data-bs-toggle="modal" data-bs-target="#crudForm">
+                            <div class="d-flex justify-content-around flex-wrap gap-3 overflow-hidden my-3">
+                                <img src="IMGupload\<?=$row['photo_book']?>" style="object-fit: scale-down; height: 333px;" class="img-thumbnail vw-100">
                             </div>
                             <div><strong class="text-black"> <?php echo displayCutString($row['title']);?></strong></div>
                             <div><u style="color:#1907e4;"><strong>Auteur:</strong></u>    <span class="text-black"><?php echo displayCutString($row['n_auteur']); ?></span></div>
@@ -148,8 +173,11 @@ function updateBOOK(){
         header('location: MLIVRES.php?error=$mess');
     }else{
         if(empty($photo)){
-            
-        }
+            $req="UPDATE `livre` SET `title`='$title',`n_auteur`='$auteu',`genre`='$genr',
+        `description`='$description',`price`='$prix' WHERE `idLivre`=$idHide";
+        mysqli_query($conn, $req);
+        header('location: MLIVRES.php');
+        }else{
         $img_extention=pathinfo($photo,PATHINFO_EXTENSION);
         $new_img_name=uniqid('IMG-',TRUE).'.'.$img_extention;
         $new_img_path='IMGupload/'.$new_img_name;
@@ -158,6 +186,7 @@ function updateBOOK(){
         `description`='$description',`price`='$prix',`photo_book`='$new_img_name' WHERE `idLivre`=$idHide";
         mysqli_query($conn, $req);
         header('location: MLIVRES.php');
+        }
     }
 }
 function deleteBOOK(){
@@ -173,4 +202,34 @@ function deleteAll(){
     mysqli_query($conn,$req);
     header('location: MLIVRES.php');
 }
+function nombrLivresTotal(){
+    GLOBAL $conn;
+    $req="SELECT COUNT(*) FROM livre";
+    $resultat=mysqli_query($conn,$req);
+    $row=mysqli_fetch_assoc($resultat);
+    echo $row['COUNT(*)'];
+}
+function nombrMesLivres(){
+    GLOBAL $conn;
+    $idus=$_SESSION['iduser'];
+    $req="SELECT COUNT(*) FROM `livre` WHERE livre.code=$idus";
+    $resultat=mysqli_query($conn,$req);
+    $row=mysqli_fetch_assoc($resultat);
+    echo $row['COUNT(*)'];
+}
+function nombrAdminInscr(){
+    GLOBAL $conn;
+    $req="SELECT COUNT(*) FROM `admin`";
+    $resultat=mysqli_query($conn,$req);
+    $row=mysqli_fetch_assoc($resultat);
+    echo $row['COUNT(*)'];
+}
+function genre($parametre){
+    GLOBAL $conn;
+    $req="SELECT COUNT(*) FROM `livre` WHERE `genre`=$parametre";
+    $resultat=mysqli_query($conn,$req);
+    $row=mysqli_fetch_assoc($resultat);
+    echo $row['COUNT(*)'];
+}
+
 ?>
