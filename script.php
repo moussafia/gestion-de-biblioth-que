@@ -198,7 +198,8 @@ function deleteBOOK(){
 }
 function deleteAll(){
     GLOBAL $conn;
-    $req="DELETE FROM `livre`";
+    $idus=$_SESSION['iduser'];
+    $req="DELETE FROM `livre` WHERE livre.code=$idus";
     mysqli_query($conn,$req);
     header('location: MLIVRES.php');
 }
