@@ -28,7 +28,7 @@ if(isset($_SESSION['name'])){
                                 <div>
                                     <p class="text-center h1 fw-bold mb-5 mx-md-4 mt-4">Se connecter</p>
                                 </div>
-                                <form method="POST" class="ps-4">
+                                <form name="signInform" method="POST" class="ps-4">
                                     <div class="d-flex">
                                         <div class="align-items-center mb-4 pe-2">
                                             <i class="bi bi-envelope-fill fs-3"></i>
@@ -46,7 +46,7 @@ if(isset($_SESSION['name'])){
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-1 mb-lg-1">
-                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder" name="Entrer">Entrer</button>
+                                        <button type="submit" class="btn btn-primary btn-lg fw-bolder" name="Entrer" id="Entrer">Entrer</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                     <a href="signUp.php" style="text-decoration:none;">S'inscrire</a>

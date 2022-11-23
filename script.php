@@ -7,6 +7,7 @@ if(isset($_POST['save']))        saveBook();
 if(isset($_POST['delete']))      deleteBOOK();
 if(isset($_POST['deleteAll']))    deleteAll();
 if(isset($_POST['Update']))      updateBOOK();
+// send data admin in database
 function saveDataAdmin(){
     GLOBAL $conn;
     $nameuser=$_POST['username'];
@@ -26,6 +27,7 @@ function saveDataAdmin(){
     }
         
 }
+//check email unique to evoid sign up problame
 function checkEmailUnique($email){
     Global $conn;
     $req="SELECT * FROM admin WHERE email='$email'";
@@ -37,18 +39,20 @@ function checkEmailUnique($email){
         return true;
     }
 }
+//sign in for admin
 function SignIn(){
     GLOBAL $conn;
     $uemail=$_POST['Sinuemail'];
     $passW=$_POST['inpassword'];
-    if(checkEmailExist($uemail,$passW)==true){
+    if(checkEmailMdpExist($uemail,$passW)==true){
         sessionAdmin($uemail);
         header('location: dashboard.php');
     }else{ 
         $_SESSION['messa']="email ou mot de passe n'est pas correct";
     }
 }
-function checkEmailExist($email,$pass){
+//check email and password exist in data base for log in admin
+function checkEmailMdpExist($email,$pass){
     Global $conn;
     $req="SELECT * FROM admin WHERE email='$email' AND password='$pass'";
     $result=mysqli_query($conn, $req);
@@ -59,6 +63,7 @@ function checkEmailExist($email,$pass){
         return false;
     }
 }
+//create session variable to store data admin
 function sessionAdmin($uemail){
     Global $conn;
     $req="SELECT * FROM admin WHERE email='$uemail'";
@@ -71,6 +76,7 @@ function sessionAdmin($uemail){
     $_SESSION['gend']=$row['sexe'];
     $_SESSION['mdp']=$row['password'];
 }
+//send and save all data about book in database
 function saveBook(){
     GLOBAL $conn;
     $photo=$_FILES['picture']['name'];
@@ -99,7 +105,7 @@ function saveBook(){
         header('location: MLIVRES.php');
         }
     }
-
+//display only book for admin who log in 
 function displayMyBook(){
     GLOBAL $conn;
     $idus=$_SESSION['iduser'];
@@ -123,6 +129,7 @@ function displayMyBook(){
     </div>
 <?php }
 }
+//display all book for other admin and admin himself
 function displayAllBook(){
     GLOBAL $conn;
     $idus=$_SESSION['iduser'];
@@ -146,6 +153,7 @@ function displayAllBook(){
     </div>
 <?php }
 }
+//for cut and limit string to 3O word or less
 function displayCutString($string){
     $newString;
     if(strlen($string)>30){
@@ -158,6 +166,7 @@ function displayCutString($string){
         return $string;
     }   
 }
+//update book for admin who doing loging for only his book
 function updateBOOK(){
     GLOBAL $conn;
     $photo=$_FILES['picture']['name'];
@@ -189,6 +198,7 @@ function updateBOOK(){
         }
     }
 }
+//delete one book for admin who doing loging for only his book
 function deleteBOOK(){
     GLOBAL $conn;
     $idHide=$_POST['idBook'];
@@ -196,6 +206,7 @@ function deleteBOOK(){
     mysqli_query($conn,$req);
     header('location: MLIVRES.php');
 }
+//delete all book for admin who doing loging for onlu his book
 function deleteAll(){
     GLOBAL $conn;
     $idus=$_SESSION['iduser'];
@@ -203,6 +214,8 @@ function deleteAll(){
     mysqli_query($conn,$req);
     header('location: MLIVRES.php');
 }
+//statistique
+//count all books exist for all admin who doing sign up
 function nombrLivresTotal(){
     GLOBAL $conn;
     $req="SELECT COUNT(*) FROM livre";
@@ -210,6 +223,7 @@ function nombrLivresTotal(){
     $row=mysqli_fetch_assoc($resultat);
     echo $row['COUNT(*)'];
 }
+//count all books exist for only admin who doing login
 function nombrMesLivres(){
     GLOBAL $conn;
     $idus=$_SESSION['iduser'];
@@ -218,6 +232,7 @@ function nombrMesLivres(){
     $row=mysqli_fetch_assoc($resultat);
     echo $row['COUNT(*)'];
 }
+//count all admin who doing sign up
 function nombrAdminInscr(){
     GLOBAL $conn;
     $req="SELECT COUNT(*) FROM `admin`";
@@ -225,6 +240,7 @@ function nombrAdminInscr(){
     $row=mysqli_fetch_assoc($resultat);
     echo $row['COUNT(*)'];
 }
+//compter chaque genre de livre existe 
 function genre($parametre){
     GLOBAL $conn;
     $req="SELECT COUNT(*) FROM `livre` WHERE `genre`=$parametre";

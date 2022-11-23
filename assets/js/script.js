@@ -1,8 +1,8 @@
 var save=document.getElementById('save');
 var update=document.getElementById('Update');
 var delet=document.getElementById('delete');
-// const form=document.forms['crudForm'];
 
+//sign in valid
 function signUP_valid(){
     var unom=document.inscription.username;
     var umail=document.inscription.uemail;
@@ -18,6 +18,7 @@ function signUP_valid(){
           }else return false;
     }else return false;
     }
+// user name valid
 function usernameValid(unom){
     var letter =/^([A-Za-z]{3,16})?([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})$/;
     if(unom.value.match(letter)){
@@ -27,6 +28,7 @@ function usernameValid(unom){
         return false;
     }
 }
+// date de naissance valid
 function userDateNvalid(datenaissance){
     if(datenaissance.value!=""){
         return true;
@@ -36,6 +38,7 @@ function userDateNvalid(datenaissance){
         return false;
     }
 }
+//user email valid 
 function userEmailValid(umail){
     var mail=/^([A-Za-z\d\.-_]+)@([A-Za-z\d]+)\.([A-Za-z]{2,8})(\.[A-Za-z]{2,8})?$/;
     if(umail.value.match(mail)){
@@ -45,6 +48,7 @@ function userEmailValid(umail){
         return false;
     }
 }
+//user password valid
 function userPassewordValid(pass){
     var mdp=pass.value.length;
     if(mdp==0 || mdp>12 || mdp<3){
@@ -53,7 +57,7 @@ function userPassewordValid(pass){
     }
     return true;
 }
-
+// hide button in add book and reset form
 function clickBtnAddBook(){
     save.style.display='inline';
     delet.style.display='none';
@@ -61,7 +65,7 @@ function clickBtnAddBook(){
     document.getElementById('nameOperation').innerHTML='Ajouter un livre';
     document.crudForm.reset();
 }
-
+// remplir form
 function RemplirForm(idForm){
     save.style.display="none";
     delet.style.display="inline";
