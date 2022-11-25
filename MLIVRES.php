@@ -42,7 +42,7 @@ if(!isset($_SESSION['name'])){
             </div>
             </div>
         </nav>
-        <main>
+        <main class="vh-100">
             <div class="container-fluid">
             <div class="row shadow bg-white rounded">
                 <div class="col-lg-6">
@@ -65,7 +65,7 @@ if(!isset($_SESSION['name'])){
             </div>
             </div>
         </main>
-        <footer class="bg-dark text-center text-white">
+        <footer class="bg-dark text-center text-white" style="margin-top: 5%">
         <div class="container p-4">
         <section class="mb-4">
         <!-- Facebook -->
